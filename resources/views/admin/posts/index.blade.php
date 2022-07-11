@@ -13,6 +13,7 @@
             <th class="col-2">ID</th>
             <th class="col-2">NAME</th>
             <th class="col-2">CATEGORIES</th>
+            <th class="col-2">TAGS</th>
             <th class="col-2">LOCATION</th>
             <th class="col-2">EMAIL</th>
             <th class="col-2">ACTION</th>
@@ -29,6 +30,13 @@
             </td>
             <td>
                 <p>{{ $post->category->name }}</p>
+            </td>
+            <td>
+                @forelse ($post->tags as $tag)
+                    <p class="badge badge-success">{{ $tag->name }}</p>
+                @empty
+                    -
+                @endforelse
             </td>
             <td>
                 <p>{{ $post->location }}</p>
