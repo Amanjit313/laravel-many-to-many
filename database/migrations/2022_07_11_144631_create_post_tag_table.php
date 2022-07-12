@@ -13,6 +13,7 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
+        /* BISOGNA SEMPRE METTERE DENTRO LE '' DEL CREATE LA PAROLA IN SINGOLARE E IN ORDINE ALFABETICO CON LA _ DI MEZZO, SE AL POSTO DEL POST CI FOSSE STATO 'UVA' LA PAROLA DENTRO IL CREATE SAREBBE STATA 'tag_uva'*/
         Schema::create('post_tag', function (Blueprint $table) {
             $table->unsignedBigInteger('post_id');
 
