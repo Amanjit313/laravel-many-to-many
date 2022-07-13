@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostsController extends Controller
@@ -29,7 +30,8 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -43,7 +45,6 @@ class PostsController extends Controller
 
         $request->validate($this->rulesValidate(), $this->messagesValidate());
 
-
         $data = $request->all();
 
         $new_post = new Post();
@@ -53,6 +54,10 @@ class PostsController extends Controller
         $new_post->fill($data);
 
         $new_post->save();
+
+        if(array_key_exists('tags', $data)){
+            $new_post->tags()->attach($data['tags']);
+        }
 
         return redirect()->route('admin.posts.index', $new_post);
     }

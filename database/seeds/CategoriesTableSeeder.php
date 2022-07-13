@@ -16,7 +16,7 @@ class CategoriesTableSeeder extends Seeder
         $categories = [
             'HTML',
             'CSS',
-            'VUEJS',
+            'JS',
             'PHP'
         ];
         foreach ($categories as $category) {

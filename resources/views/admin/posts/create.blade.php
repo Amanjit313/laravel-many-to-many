@@ -49,6 +49,28 @@
     <br>
 
     <div class="col-3">
+        <label class="form-label">Tags</label>
+        @foreach ($tags as $tag)
+        <br>
+        <input  class="form-select @error('tag_id') is-invalid @enderror"
+                aria-label="Default select example"
+                name="tags[]"
+                id="tag{{ $loop->iteration }}"
+                type="checkbox"
+                value="{{ $tag->id }}"
+                @if(in_array($tag->id, old('tags', []))) checked @endif>
+                <label for="tag{{ $loop->iteration }}">
+                    {{ $tag->name }}
+                </label>
+                <br>
+        @endforeach
+        @error('tag_id')
+            <p class="error-msg text-danger">{{ $message }}</p>
+        @enderror
+    </div>
+    <br>
+
+    <div class="col-3">
         <label for="location" class="form-label">Location</label>
         <input  type="text" id="location"
                 name="location"
